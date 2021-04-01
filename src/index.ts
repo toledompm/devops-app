@@ -69,7 +69,7 @@ app.post('/task/new', (req, res) => {
 
   try {
     const newTask = new Task({ id: taskIdCounter, ...body });
-    taskIdCounter ++;
+    taskIdCounter += 1;
     tasks.push(newTask);
     res.json(newTask);
   } catch (err) {
