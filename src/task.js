@@ -1,3 +1,5 @@
+const assert = require('assert');
+
 class Task {
   constructor(params) {
     assert.ok(params.id)
