@@ -1,16 +1,20 @@
 # TODO APP
+
 NodeJS api to manage tasks.
 
 ## Setup
-```npm install```
+
+`npm install`
 
 ## Run it
-```PORT=<some-port> npm start```
+
+`PORT=<some-port> npm start`
 
 ## Routes
 
 #### New Task
-``` bash
+
+```bash
 # body:
 #  {
 #    description: text,
@@ -21,12 +25,14 @@ POST @localhost:PORT/task/new
 ```
 
 #### Find task by ID
-``` bash
+
+```bash
 GET @localhost:PORT/task/:id
 ```
 
 #### Update status by ID
-``` bash
+
+```bash
 # body:
 #  {
 #    status: ACTIVE || DONE
