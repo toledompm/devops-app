@@ -1,5 +1,4 @@
 const express = require('express')
-const { json } = require('body-parser')
 const assert = require('assert')
 
 class Task {
@@ -22,7 +21,7 @@ let taskIdCounter = 1
 
 const { PORT } = process.env
 const app = express()
-app.use(json())
+app.use(express.json())
 
 app.get('/', (_, res) => res.json({ status: 'ok' }))
 
