@@ -39,13 +39,9 @@ describe('Task', () => {
       }
 
       const myTask = new Task(params)
+      myTask.updateStatus('DONE')
 
-      expect(
-        ((task) => {
-          task.updateStatus('DONE')
-          return task
-        })(myTask)
-      ).toMatchObject({ status: 'DONE' })
+      expect(myTask).toMatchObject({ status: 'DONE' })
     })
   })
 })
