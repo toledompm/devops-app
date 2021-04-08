@@ -1,4 +1,4 @@
-const assert = require('assert');
+const assert = require('assert')
 
 class Task {
   constructor(params) {
@@ -12,6 +12,10 @@ class Task {
 
   updateStatus(status) {
     this.status = status
+  }
+
+  static find(tasks, id) {
+    return tasks.find((task) => task.id === parseInt(id, 10))
   }
 }
 

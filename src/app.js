@@ -4,7 +4,6 @@ const Task = require('./task')
 const tasks = []
 let taskIdCounter = 1
 
-const { PORT } = process.env
 const app = express()
 
 app.use(express.json())
@@ -19,7 +18,8 @@ app.get('/task/:id', (req, res) => {
   }
 
   try {
-    const foundTask = tasks.find((task) => task.id === parseInt(id, 10))
+    const foundTask = Task.find(tasks, id)
+
     if (!foundTask) {
       res.sendStatus(404)
       return
@@ -43,7 +43,7 @@ app.post('/task/new', (req, res) => {
     const newTask = new Task({ id: taskIdCounter, ...body })
     taskIdCounter += 1
     tasks.push(newTask)
-    res.json(newTask)
+    res.status(201).json(newTask)
   } catch (err) {
     console.error(err)
     res.sendStatus(500)
@@ -72,7 +72,5 @@ app.put('/task/:id/update', (req, res) => {
     res.sendStatus(500)
   }
 })
-
-app.listen(PORT, () => console.log('Server listening on port', PORT))
 
 module.exports = app
