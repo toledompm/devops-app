@@ -44,4 +44,29 @@ describe('Task', () => {
       expect(myTask).toMatchObject({ status: 'DONE' })
     })
   })
+
+  describe('#find', () => {
+    describe('when the tasks already exist', () => {
+      it('should return the task', () => {
+        const tasks = []
+
+        const params = {
+          id: 1,
+          description: 'Task A',
+          title: 'Task A',
+        }
+
+        const myTask = new Task(params)
+        tasks.push(myTask)
+
+        expect(Task.find(tasks, myTask.id)).not.toBeNull()
+      })
+    })
+
+    describe('when the tasks not exist', () => {
+      it('should return undefined', () => {
+        expect(Task.find([], 1)).toBeUndefined()
+      })
+    })
+  })
 })
