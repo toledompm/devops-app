@@ -6,6 +6,14 @@ NodeJS api to manage tasks.
 
 `npm install`
 
+### Docker
+
+```bash
+export PORT=3000
+make build
+make run
+```
+
 ## Run it
 
 `PORT=<some-port> npm start`
