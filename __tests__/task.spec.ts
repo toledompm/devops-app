@@ -1,4 +1,4 @@
-const Task = require('../src/task')
+import { Task, TaskStatus } from '../src/task'
 
 describe('Task', () => {
   describe('#constructor', () => {
@@ -15,7 +15,7 @@ describe('Task', () => {
         expect(task.id).toEqual(1)
         expect(task.description).toEqual(params.description)
         expect(task.title).toEqual(params.title)
-        expect(task.status).toEqual('ACTIVE')
+        expect(task.status).toEqual('active')
       })
     })
 
@@ -39,9 +39,9 @@ describe('Task', () => {
       }
 
       const myTask = new Task(params)
-      myTask.updateStatus('DONE')
+      myTask.updateStatus(TaskStatus.DONE)
 
-      expect(myTask).toMatchObject({ status: 'DONE' })
+      expect(myTask).toMatchObject({ status: TaskStatus.DONE })
     })
   })
 
@@ -63,7 +63,7 @@ describe('Task', () => {
       })
     })
 
-    describe('when the tasks not exist', () => {
+    describe('when the task does not exist', () => {
       it('should return undefined', () => {
         expect(Task.find([], 1)).toBeUndefined()
       })
