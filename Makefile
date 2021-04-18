@@ -1,7 +1,14 @@
 .PHONY: build
 build:
-	@docker build -t devops-app --build-arg=${PORT} .
+	npm run build
 
-.PHONY: run
-run:
+.PHONY: docker/build
+docker/build:
+	@docker build -t devops-app .
+
+ifndef PORT
+PORT = 3000
+endif
+.PHONY: docker/run
+docker/run:
 	@docker run --rm -dit --name devops-app -e PORT=${PORT} -p ${PORT}:${PORT} devops-app

@@ -5,8 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "build": "tsc",
-    "start:dev": "nodemon",
+    "postbuild": "cp package*.json ./dist",
     "start": "tsc && node ./dist/server.js",
+    "start:dev": "nodemon",
+    "start:prod": "node ./server.js",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest"
