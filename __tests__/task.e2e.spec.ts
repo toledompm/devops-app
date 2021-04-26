@@ -37,10 +37,7 @@ describe('Task', () => {
           status: TaskStatus.ACTIVE,
         }
 
-        const task = {
-          ...taskData,
-          updateStatus: () => null,
-        }
+        const task = new Task(taskData)
 
         Task.find = jest.fn().mockReturnValue(task)
 
