@@ -47,4 +47,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: tags:fatecdevops/devops:latest
+          tags: fatecdevops/devops:latest
