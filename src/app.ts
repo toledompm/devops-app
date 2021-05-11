@@ -1,5 +1,5 @@
-const express = require('express')
-const Task = require('./task')
+import * as express from 'express'
+import { Task } from './task'
 
 const tasks = []
 let taskIdCounter = 1
@@ -18,7 +18,8 @@ app.get('/task/:id', (req, res) => {
   }
 
   try {
-    const foundTask = Task.find(tasks, id)
+    const parsedId = parseInt(id, 10)
+    const foundTask = Task.find(tasks, parsedId)
 
     if (!foundTask) {
       res.sendStatus(404)
@@ -73,4 +74,4 @@ app.put('/task/:id/update', (req, res) => {
   }
 })
 
-module.exports = app
+export const App = app
