@@ -26,5 +26,11 @@
   "requiresCompatibilities": [
     "EC2"
   ],
-  "networkMode": "host"
+  "networkMode": "host",
+  "tags": [
+    {
+      "key": "Terraform",
+      "value": true
+    }
+  ]
 }
