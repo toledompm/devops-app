@@ -1,0 +1,36 @@
+{
+  "family": "service",
+  "executionRoleArn": "ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "devops-application",
+      "image": "jasoncarneiro/devops-app:latest",
+      "cpu": 1,
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "containerPort": 3000
+        }
+      ],
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "3000"
+        }
+      ],
+      "memory": 768,
+      "essential": true
+    }
+  ],
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "networkMode": "host",
+  "tags": [
+    {
+      "key": "Terraform",
+      "value": true
+    }
+  ]
+}
