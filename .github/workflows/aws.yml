@@ -22,6 +22,15 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+    - name: Fill secrets
+        run: |
+          sed -i \
+            -e "s|SECRET_DB_HOST|${{ secrets.DB_HOST }}|g" \
+            -e "s|SECRET_DB_USERNAME|${{ secrets.DB_USERNAME }}|g" \
+            -e "s|SECRET_DB_PASSWORD|${{ secrets.DB_PASSWORD }}|g" \
+            -e "s|SECRET_DB_NAME|${{ secrets.DB_NAME }}|g" \
+            task-definition.json
+
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
