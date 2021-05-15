@@ -17,6 +17,22 @@
         {
           "name": "PORT",
           "value": "3000"
+        },
+        {
+          "name": "DB_HOST",
+          "value": "SECRET_DB_HOST"
+        },
+        {
+          "name": "DB_USERNAME",
+          "value": "SECRET_DB_USERNAME"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "value": "SECRET_DB_PASSWORD"
+        },
+        {
+          "name": "DB_NAME",
+          "value": "SECRET_DB_NAME"
         }
       ],
       "memory": 768,
