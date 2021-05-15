@@ -1,8 +1,7 @@
 import * as express from 'express'
-import { Task } from './task'
+import { TaskService } from './taskService'
 
-const tasks = []
-let taskIdCounter = 1
+const taskService = new TaskService()
 
 const app = express()
 
@@ -10,21 +9,15 @@ app.use(express.json())
 
 app.get('/', (_, res) => res.json({ status: 'ok' }))
 
-app.get('/task/:id', (req, res) => {
+app.get('/task/:id', async (req, res) => {
   const { id } = req.params
-  if (!id) {
-    res.sendStatus(400)
-    return
-  }
+  if (!id) return res.sendStatus(400)
 
   try {
     const parsedId = parseInt(id, 10)
-    const foundTask = Task.find(tasks, parsedId)
+    const foundTask = await taskService.findTask(parsedId)
 
-    if (!foundTask) {
-      res.sendStatus(404)
-      return
-    }
+    if (!foundTask) return res.sendStatus(404)
 
     res.json(foundTask)
   } catch (err) {
@@ -33,17 +26,12 @@ app.get('/task/:id', (req, res) => {
   }
 })
 
-app.post('/task/new', (req, res) => {
+app.post('/task/new', async (req, res) => {
   const { body } = req
-  if (!Object.keys(body).length) {
-    res.sendStatus(400)
-    return
-  }
+  if (!Object.keys(body).length) return res.sendStatus(400)
 
   try {
-    const newTask = new Task({ id: taskIdCounter, ...body })
-    taskIdCounter += 1
-    tasks.push(newTask)
+    const newTask = await taskService.createTask(body)
     res.status(201).json(newTask)
   } catch (err) {
     console.error(err)
@@ -51,22 +39,18 @@ app.post('/task/new', (req, res) => {
   }
 })
 
-app.put('/task/:id/update', (req, res) => {
+app.put('/task/:id/update', async (req, res) => {
   const { id } = req.params
   const { status } = req.body
-  if (!id || !status) {
-    res.sendStatus(400)
-    return
-  }
+
+  if (!id || !status) return res.sendStatus(400)
 
   try {
-    const taskToUpdate = tasks.find((task) => task.id === parseInt(id, 10))
-    if (!taskToUpdate) {
-      res.sendStatus(404)
-      return
-    }
+    const parsedId = parseInt(id, 10)
+    const updatedTask = await taskService.updateTaskStatus(parsedId, status)
 
-    taskToUpdate.updateStatus(status)
+    if (!updatedTask) return res.sendStatus(404)
+
     res.sendStatus(200)
   } catch (err) {
     console.error(err)
