@@ -1,5 +1,5 @@
 import * as express from 'express'
-import { TaskService } from './taskService'
+import { TaskService } from './task/taskService'
 
 const taskService = new TaskService()
 
@@ -47,9 +47,9 @@ app.put('/task/:id/update', async (req, res) => {
 
   try {
     const parsedId = parseInt(id, 10)
-    const updatedTask = await taskService.updateTaskStatus(parsedId, status)
+    const updateResult = await taskService.updateTaskStatus(parsedId, status)
 
-    if (!updatedTask) return res.sendStatus(404)
+    if (!updateResult) return res.sendStatus(404)
 
     res.sendStatus(200)
   } catch (err) {
