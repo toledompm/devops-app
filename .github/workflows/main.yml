@@ -4,7 +4,7 @@ on:
   push:
     branches:
       # - main
-      - "*"
+      # - "*"
       - "feat/ecr"
 
 jobs:
@@ -27,6 +27,7 @@ jobs:
       
   build:
     runs-on: ubuntu-latest
+    needs: test
     environment: ci
     steps:
       - name: Checkout source code
@@ -66,7 +67,6 @@ jobs:
             -e "s|SECRET_DB_NAME|${{ secrets.DB_NAME }}|g" \
             -e "s|ECR_IMAGE|${{ steps.build-image.outputs.image }}|g" \
             task-definition.json
-            cat task-definition.json
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
