@@ -3,9 +3,7 @@ name: deploy-flow
 on:
   push:
     branches:
-      # - main
-      # - "*"
-      - "feat/ecr"
+      - main
 
 jobs:
   test:
