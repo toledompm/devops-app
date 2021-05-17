@@ -4,7 +4,7 @@
   "containerDefinitions": [
     {
       "name": "devops-application",
-      "image": "jasoncarneiro/devops-app:latest",
+      "image": "ECR_IMAGE",
       "cpu": 1,
       "portMappings": [
         {
