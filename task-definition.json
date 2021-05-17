@@ -46,7 +46,7 @@
   "tags": [
     {
       "key": "Terraform",
-      "value": true
+      "value": "true"
     }
   ]
 }
