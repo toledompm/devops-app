@@ -6,6 +6,12 @@
       "name": "devops-application",
       "image": "ECR_IMAGE",
       "cpu": 1,
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:3000 || exit 1"],
+        "Interval": 30,
+        "Retries": 3,
+        "Timeout": 5
+      },
       "portMappings": [
         {
           "hostPort": 3000,
