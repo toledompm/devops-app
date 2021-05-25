@@ -8,15 +8,15 @@
       "cpu": 1,
       "portMappings": [
         {
-          "hostPort": 3000,
+          "hostPort": APP_PORT,
           "protocol": "tcp",
-          "containerPort": 3000
+          "containerPort": APP_PORT
         }
       ],
       "environment": [
         {
           "name": "PORT",
-          "value": "3000"
+          "value": "APP_PORT"
         },
         {
           "name": "DB_HOST",
@@ -36,12 +36,16 @@
         }
       ],
       "memory": 768,
-      "essential": true
+      "essential": true,
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:APP_PORT || exit 1"],
+        "Interval": 30,
+        "Retries": 3,
+        "Timeout": 5
+      }
     }
   ],
-  "requiresCompatibilities": [
-    "EC2"
-  ],
+  "requiresCompatibilities": ["EC2"],
   "networkMode": "host",
   "tags": [
     {
