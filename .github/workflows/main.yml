@@ -63,6 +63,7 @@ jobs:
             -e "s|SECRET_DB_USERNAME|${{ secrets.DB_USERNAME }}|g" \
             -e "s|SECRET_DB_PASSWORD|${{ secrets.DB_PASSWORD }}|g" \
             -e "s|SECRET_DB_NAME|${{ secrets.DB_NAME }}|g" \
+            -e "s|APP_PORT|${{ secrets.APP_PORT }}|g" \
             -e "s|ECR_IMAGE|${{ steps.build-image.outputs.image }}|g" \
             task-definition.json
 

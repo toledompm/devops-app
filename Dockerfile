@@ -20,5 +20,6 @@ WORKDIR $APP_DIR
 
 COPY --from=build $BUILD_DIR/dist $APP_DIR
 RUN npm install --only=prod --silent
+RUN apk add --update curl
 
 CMD ["npm", "run", "start:prod"]
