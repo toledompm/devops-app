@@ -39,9 +39,9 @@
       "essential": true,
       "healthCheck": {
         "command": ["CMD-SHELL", "curl -f http://localhost:APP_PORT || exit 1"],
-        "Interval": 30,
-        "Retries": 3,
-        "Timeout": 5
+        "interval": 30,
+        "retries": 3,
+        "timeout": 5
       }
     }
   ],
