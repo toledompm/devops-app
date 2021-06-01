@@ -2,7 +2,7 @@ import * as request from 'supertest'
 import { App } from '../src/app'
 import { Task, TaskStatus } from '../src/task/task'
 
-describe.skip('Task', () => {
+describe('Task', () => {
   describe('POST /task/new', () => {
     describe('when body is valid', () => {
       it('should return CREATED status', async () => {
