@@ -48,6 +48,7 @@ jobs:
             -e "s|SECRET_DB_NAME|${{ secrets.DB_NAME }}|g" \
             -e "s|APP_PORT|${{ secrets.APP_PORT }}|g" \
             -e "s|ECR_IMAGE|${{ steps.build-image.outputs.image }}|g" \
+            -e "s|LOG_GROUP_NAME|${{ secrets.LOG_GROUP_NAME }}|g" \
             task-definition.json
 
       - name: Deploy Amazon ECS task definition

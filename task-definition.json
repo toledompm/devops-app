@@ -35,17 +35,30 @@
           "value": "SECRET_DB_NAME"
         }
       ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "LOG_GROUP_NAME",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "devops-culture"
+        }
+      },
       "memory": 768,
       "essential": true,
       "healthCheck": {
-        "command": ["CMD-SHELL", "curl -f http://localhost:APP_PORT || exit 1"],
+        "command": [
+          "CMD-SHELL",
+          "curl -f http://localhost:APP_PORT || exit 1"
+        ],
         "interval": 30,
         "retries": 3,
         "timeout": 5
       }
     }
   ],
-  "requiresCompatibilities": ["EC2"],
+  "requiresCompatibilities": [
+    "EC2"
+  ],
   "networkMode": "host",
   "tags": [
     {
