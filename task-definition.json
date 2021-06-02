@@ -39,8 +39,8 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "LOG_GROUP_NAME",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "devops-culture"
+          "awslogs-region": "LOG_AWS_REGION",
+          "awslogs-stream-prefix": "LOG_STREAM_PREFIX"
         }
       },
       "memory": 768,

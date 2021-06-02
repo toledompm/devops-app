@@ -1,14 +1,15 @@
 name: deploy-flow
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["test-flow"]
+    branches: [main]
+    types: 
+      - completed
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    needs: test
     environment: ci
     steps:
       - name: Checkout source code
@@ -49,6 +50,8 @@ jobs:
             -e "s|APP_PORT|${{ secrets.APP_PORT }}|g" \
             -e "s|ECR_IMAGE|${{ steps.build-image.outputs.image }}|g" \
             -e "s|LOG_GROUP_NAME|${{ secrets.LOG_GROUP_NAME }}|g" \
+            -e "s|LOG_AWS_REGION|${{ secrets.LOG_AWS_REGION }}|g" \
+            -e "s|LOG_STREAM_PREFIX|${{ secrets.LOG_STREAM_PREFIX }}|g" \
             task-definition.json
 
       - name: Deploy Amazon ECS task definition
