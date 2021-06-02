@@ -1,4 +1,4 @@
-name: deploy-flow
+name: test-flow
 
 on:
   push:
