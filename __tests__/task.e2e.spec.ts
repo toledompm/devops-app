@@ -1,6 +1,5 @@
 import * as request from 'supertest'
 import { App } from '../src/app'
-import { Task, TaskStatus } from '../src/task/task'
 
 describe('Task', () => {
   describe('POST /task/new', () => {
